@@ -1,0 +1,13 @@
+server:
+  port: 8030
+
+spring:
+  application:
+    name: atomscat-consumer
+  main:
+    allow-bean-definition-overriding: true
+
+
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181

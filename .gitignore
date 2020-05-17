@@ -1,0 +1,5 @@
+# Project exclude paths
+/atomscat-consumer-api/target/
+/atomscat-consumer-service/target/
+.idea
+atomscat-consumer.iml

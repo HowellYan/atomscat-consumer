@@ -1,0 +1,9 @@
+POST http://localhost:8030/api/customer/info
+
+Content-Type: application/json
+
+{
+"name": "ABC"
+}
+
+###
