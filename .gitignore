@@ -3,3 +3,5 @@
 /atomscat-consumer-service/target/
 .idea
 atomscat-consumer.iml
+atomscat-consumer-service.iml
+atomscat-consumer-api.iml

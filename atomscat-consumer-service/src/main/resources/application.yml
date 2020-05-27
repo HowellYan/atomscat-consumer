@@ -10,4 +10,4 @@ spring:
 
 dubbo:
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://192.168.1.12:2181

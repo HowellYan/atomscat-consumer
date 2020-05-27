@@ -15,4 +15,7 @@ public class CustomerRemoteService {
         return customerService.getCustomerInfo(customerInfoRequest);
     }
 
+    public CustomerInfoResponse setRedis(CustomerInfoRequest customerInfoRequest) {
+        return customerService.setRedis(customerInfoRequest);
+    }
 }

@@ -20,4 +20,9 @@ public class CustomerController {
     public CustomerInfoResponse getCustInfo(@RequestBody CustomerInfoRequest customerInfoRequest) {
         return customerRemoteService.getCustInfo(customerInfoRequest);
     }
+
+    @PostMapping("/setRedis")
+    public CustomerInfoResponse setRedis(@RequestBody CustomerInfoRequest customerInfoRequest) {
+        return customerRemoteService.setRedis(customerInfoRequest);
+    }
 }
