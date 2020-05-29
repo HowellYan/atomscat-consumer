@@ -1,5 +1,6 @@
 package com.atomscat.consumer.controller;
 
+import com.atomscat.consumer.config.annotation.RateLimiter;
 import com.atomscat.consumer.remote.CustomerRemoteService;
 import com.atomscat.provider.request.CustomerInfoRequest;
 import com.atomscat.provider.response.CustomerInfoResponse;
@@ -22,6 +23,7 @@ public class CustomerController {
     }
 
     @PostMapping("/setRedis")
+    @RateLimiter(limit = 1, timeout = 60000)
     public CustomerInfoResponse setRedis(@RequestBody CustomerInfoRequest customerInfoRequest) {
         return customerRemoteService.setRedis(customerInfoRequest);
     }
