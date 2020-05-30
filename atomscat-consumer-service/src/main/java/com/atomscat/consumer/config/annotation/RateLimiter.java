@@ -14,4 +14,6 @@ public @interface RateLimiter {
     int limit() default 5;
 
     int timeout() default 1000;
+
+    String key = null;
 }
