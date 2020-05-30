@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.stereotype.Component;
@@ -31,13 +32,18 @@ public class RedisConfig {
     public JedisConnectionFactory jedisConnectionFactory() {
         if (redisProperties.getSentinel() != null && redisProperties.getSentinel().getNodes().size() > 0) {
             // todo
+            RedisSentinelConfiguration config = new RedisSentinelConfiguration(redisProperties.getSentinel().getMaster(),
+                    new HashSet<>(redisProperties.getSentinel().getNodes()));
+            config.setDatabase(redisProperties.getDatabase());
+            config.setPassword(redisProperties.getSentinel().getPassword());
+            config.setSentinelPassword(redisProperties.getSentinel().getPassword());
+            return new JedisConnectionFactory(config);
         } else {
             RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort());
             config.setPassword(redisProperties.getPassword());
             config.setDatabase(redisProperties.getDatabase());
             return new JedisConnectionFactory(config);
         }
-        return null;
     }
 
 

@@ -51,10 +51,6 @@ public class RateLimiterAspect {
             limit = method.getAnnotation(RateLimiter.class).limit();
             timeout = method.getAnnotation(RateLimiter.class).timeout();
         }
-        log.info("targetClass: " + targetClass.getCanonicalName());
-        log.info("methodName: " + methodName);
-        log.info("limit: " + limit);
-        log.info("timeout: " + timeout);
         String key = targetClass.getCanonicalName() + "." + methodName;
         String token = redisRaterLimiter.bucket(key, limit, timeout);
         if (StringUtils.isBlank(token)) {
