@@ -2,11 +2,14 @@ package com.atomscat.consumer.config.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;
@@ -17,16 +20,15 @@ import java.util.HashSet;
  * @author Howell.Yang
  */
 @Configuration
+@EnableConfigurationProperties({RedisProperties.class})
 public class RedisConfig {
 
-    @Autowired
-    private JedisConnectionFactory jedisConnectionFactory;
 
     @Autowired
     private RedisProperties redisProperties;
 
     @Bean
-    public JedisConnectionFactory redisConnectionFactory() {
+    public JedisConnectionFactory jedisConnectionFactory() {
         if (redisProperties.getSentinel() != null && redisProperties.getSentinel().getNodes().size() > 0) {
             // todo
         } else {
@@ -46,7 +48,7 @@ public class RedisConfig {
      * @return
      */
     @Bean
-    public JedisPool jedisPool() {
+    public JedisPool jedisPool(JedisConnectionFactory jedisConnectionFactory) {
         if (redisProperties.getSentinel() != null && redisProperties.getSentinel().getNodes().size() > 0) {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             JedisSentinelPool jedisSentinelPool = new JedisSentinelPool(jedisConnectionFactory.getSentinelConfiguration().getMaster().getName(),
@@ -70,7 +72,7 @@ public class RedisConfig {
      * @return
      */
     @Bean
-    public JedisSentinelPool jedisSentinelPool() {
+    public JedisSentinelPool jedisSentinelPool(JedisConnectionFactory jedisConnectionFactory) {
         if (redisProperties.getSentinel() != null && redisProperties.getSentinel().getNodes().size() > 0) {
             JedisSentinelPool jedisSentinelPool = new JedisSentinelPool(jedisConnectionFactory.getSentinelConfiguration().getMaster().getName(),
                     new HashSet<>(redisProperties.getSentinel().getNodes()),

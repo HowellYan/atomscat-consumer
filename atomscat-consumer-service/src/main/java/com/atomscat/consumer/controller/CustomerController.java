@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @PostMapping("/setRedis")
-    @RateLimiter(limit = 1, timeout = 60000)
+    @RateLimiter(limit = 10, timeout = 60000)
     public CustomerInfoResponse setRedis(@RequestBody CustomerInfoRequest customerInfoRequest) {
         return customerRemoteService.setRedis(customerInfoRequest);
     }
