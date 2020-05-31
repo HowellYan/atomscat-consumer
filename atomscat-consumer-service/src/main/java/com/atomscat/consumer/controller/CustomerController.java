@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/customer")
@@ -20,12 +22,9 @@ public class CustomerController {
     private CustomerRemoteService customerRemoteService;
 
     @PostMapping("/info")
-    public CustomerInfoResponse getCustInfo(@RequestBody CustomerInfoRequest customerInfoRequest) {
+    public List<CustomerInfoResponse> getCustInfo(@RequestBody CustomerInfoRequest customerInfoRequest) {
         log.info(customerInfoRequest.getName());
-        for (int i=0;i < 200; i++) {
-            customerRemoteService.getCustInfo(customerInfoRequest);
-        }
-        return customerRemoteService.getCustInfo(customerInfoRequest);
+        return customerRemoteService.getCustInfoList(customerInfoRequest);
     }
 
     @PostMapping("/setRedis")
