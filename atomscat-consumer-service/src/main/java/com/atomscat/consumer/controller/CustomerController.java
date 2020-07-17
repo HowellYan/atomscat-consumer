@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -21,10 +23,25 @@ public class CustomerController {
     @Autowired
     private CustomerRemoteService customerRemoteService;
 
-    @PostMapping("/info")
-    public List<CustomerInfoResponse> getCustInfo(@RequestBody CustomerInfoRequest customerInfoRequest) {
+    @PostMapping("/login")
+    public Map<String, Object> login(@RequestBody CustomerInfoRequest customerInfoRequest) {
         log.info(customerInfoRequest.getName());
-        return customerRemoteService.getCustInfoList(customerInfoRequest);
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", customerInfoRequest.getName() + "_1");
+        map.put("code","000000");
+        map.put("message","成功");
+        return map;
+    }
+
+    @PostMapping("/info")
+    public Map<String, Object> getCustInfo(@RequestBody CustomerInfoRequest customerInfoRequest) {
+        log.info(customerInfoRequest.getName());
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", customerInfoRequest.getName() + "_2");
+        map.put("list", customerRemoteService.getCustInfoList(customerInfoRequest));
+        map.put("code","000000");
+        map.put("message","成功");
+        return map;
     }
 
     @PostMapping("/setRedis")
