@@ -7,14 +7,14 @@ spring:
   main:
     allow-bean-definition-overriding: true
   redis:
-    host: 127.0.0.1
+    host: 192.168.1.12
     password: admin123456
     database: 1
     port: 6379
 
 dubbo:
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: nacos://192.168.1.14:8848
     check: false
   consumer:
     check: false
