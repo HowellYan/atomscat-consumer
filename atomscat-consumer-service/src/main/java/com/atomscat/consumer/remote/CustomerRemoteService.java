@@ -1,16 +1,17 @@
 package com.atomscat.consumer.remote;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+
 import com.atomscat.provider.request.CustomerInfoRequest;
 import com.atomscat.provider.response.CustomerInfoResponse;
 import com.atomscat.provider.service.CustomerService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CustomerRemoteService {
-    @Reference
+    @DubboReference
     private CustomerService customerService;
 
     public CustomerInfoResponse getCustInfo(CustomerInfoRequest customerInfoRequest) {

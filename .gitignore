@@ -5,3 +5,4 @@
 atomscat-consumer.iml
 atomscat-consumer-service.iml
 atomscat-consumer-api.iml
+/target
