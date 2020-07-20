@@ -25,7 +25,16 @@ Content-Type: application/json;charset=UTF-8
   "name": "ABC"
 }
 ###
+###
 
+POST http://127.0.0.1:8030/api/customer/test
+Content-Type: application/json;charset=UTF-8
+
+{
+  "name": "ccc",
+  "username": "ccc"
+}
+###
 
 
 

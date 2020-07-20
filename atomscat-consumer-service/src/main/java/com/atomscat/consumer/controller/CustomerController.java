@@ -49,4 +49,9 @@ public class CustomerController {
     public CustomerInfoResponse setRedis(@RequestBody CustomerInfoRequest customerInfoRequest) {
         return customerRemoteService.setRedis(customerInfoRequest);
     }
+
+    @PostMapping("/test")
+    public List<CustomerInfoResponse> test(@RequestBody CustomerInfoRequest customerInfoRequest) {
+        return customerRemoteService.test(customerInfoRequest);
+    }
 }
