@@ -1,6 +1,7 @@
 package com.atomscat.consumer;
 
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 

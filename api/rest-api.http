@@ -31,10 +31,16 @@ POST http://127.0.0.1:8030/api/customer/test
 Content-Type: application/json;charset=UTF-8
 
 {
-  "name": "ccc",
-  "username": "ccc"
+  "name": "2"
 }
 ###
 
 
 
+POST http://192.168.1.249:30035/api/customer/test
+Content-Type: application/json;charset=UTF-8
+
+{
+  "name": "ccc",
+  "username": "ccc"
+}

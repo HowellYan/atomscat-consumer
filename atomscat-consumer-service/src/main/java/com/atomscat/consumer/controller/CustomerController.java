@@ -51,7 +51,7 @@ public class CustomerController {
     }
 
     @PostMapping("/test")
-    public List<CustomerInfoResponse> test(@RequestBody CustomerInfoRequest customerInfoRequest) {
+    public List<CustomerInfoResponse> test(@RequestBody CustomerInfoRequest customerInfoRequest) throws Exception {
         return customerRemoteService.test(customerInfoRequest);
     }
 }

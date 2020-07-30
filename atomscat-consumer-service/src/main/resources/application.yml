@@ -16,7 +16,16 @@ dubbo:
   registry:
     address: nacos://192.168.1.14:8848
     parameters:
-      namespace: 5f5afe75-b943-40dc-ae5a-6f3e9ab24cf8
+      namespace: e59784dc-e433-4b72-939a-fd5cff8cc0f2
     check: false
   consumer:
     check: false
+
+seata:
+  enabled: true
+  application-id: atomscat-consumer
+  tx-service-group: my_test_tx_group
+  registry:
+    nacos:
+      server-addr: 192.168.1.14:8848
+    type: nacos
